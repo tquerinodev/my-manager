@@ -173,7 +173,7 @@ const Sidebar = () => {
                                         <AnimateHeight duration={300} height={currentMenu === 'invoice' ? 'auto' : 0}>
                                             <ul className="sub-menu text-gray-500">
                                                 <li>
-                                                    <Link href="/apps/invoice/list">{t('list')}</Link>
+                                                    <Link href="/revisoes/">{t('list')}</Link>
                                                 </li>
                                                 <li>
                                                     <Link href="/apps/invoice/preview">{t('preview')}</Link>
