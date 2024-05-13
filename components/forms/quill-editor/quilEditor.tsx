@@ -1,7 +1,13 @@
-// MyEditor.tsx
+
+import dynamic from 'next/dynamic';
 import React, { FunctionComponent, useState } from 'react';
-import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Importa os estilos do Quill
+
+
+const ReactQuill = dynamic(() => import('react-quill'), {
+    ssr: false, // Desativa a renderização no lado do servidor para este componente
+});
+
 
 // Módulos do editor Quill
 const modules = {
@@ -34,16 +40,17 @@ const formats = [
 
 // Props do componente MyEditor
 interface MyEditorProps {
-    onContentChange: (content: string) => void; // Função de callback para mudanças no conteúdo
+    onContentChange: (content: string) => void; // Função callback para mudanças no conteúdo
 }
 
 const MyEditor: FunctionComponent<MyEditorProps> = ({ onContentChange }) => {
     const [text, setText] = useState('');
 
-    // Handler para mudanças no editor
-    const handleChange = (content, delta, source, editor) => {
-        setText(editor.getHTML()); // Atualiza o estado local com o conteúdo HTML
-        onContentChange(editor.getHTML()); // Chama o callback com o novo conteúdo HTML
+    // Handler para mudanças no editor com tipos definidos
+    const handleChange = (content: string, delta: any, source: any, editor: any) => {
+        const html = editor.getHTML(); // Obtem o HTML do editor
+        setText(html); // Atualiza o estado local com o conteúdo HTML
+        onContentChange(html); // Chama o callback com o novo conteúdo HTML
     };
 
     return (

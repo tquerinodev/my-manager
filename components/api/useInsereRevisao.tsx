@@ -16,7 +16,7 @@ function useInsereRevisao() {
         setError(null);
         try {
             console.log(formData);
-            const response = await fetch('https://www.missaodelta.com.br/class_revisao.php', {
+            const response = await fetch('https://api.flashcardsjuridico.com.br/api_my_manager/class_revisao.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

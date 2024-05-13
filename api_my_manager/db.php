@@ -1,16 +1,19 @@
 <?php
-// db_connection.php
+class Database {
+    private $conn;
 
-$host = '127.0.0.1:3306';
-$dbname = 'u848683652_missaodelta';
-$username = 'u848683652_tquerinowork';
-$password = 'Que012721rino!';
+    public function __construct() {
+        $this->conn = new mysqli('93.127.212.158', 'flas_admin', 'Que012721rino#', 'flas_my_manager');
+        if ($this->conn->connect_error) {
+            die("Falha na conexão: " . $this->conn->connect_error);
+        }
+    }
 
-// Criando a conexão
-$conn = new mysqli($host, $username, $password, $dbname);
+    public function connect() {
+        return $this->conn;
+    }
 
-// Checando a conexão
-if ($conn->connect_error) {
-    die(json_encode(['message' => 'Falha na conexão com o banco de dados: ' . $conn->connect_error]));
+    public function close() {
+        $this->conn->close();
+    }
 }
-?>
